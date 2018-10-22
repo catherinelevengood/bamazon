@@ -16,33 +16,33 @@ CREATE TABLE products(
 
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Club", "Sports", 0.50, 10);
+VALUES ("Golf Club", "Sports", 99.00, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Shirt", "Clothing", 0.20, 24);
+VALUES ("Golf Shirt", "Clothing", 35.99, 24);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf hut", "Clothing", 0.08, 12);
+VALUES ("Golf hut", "Clothing", 14.00, 12);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Ball", "Sports", 0.08, 36);
+VALUES ("Golf Ball", "Sports", 3.99, 36);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Shoes", "Shoe", 0.24, 6);
+VALUES ("Golf Shoes", "Shoe", 45.50, 6);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Jacket", "Clothing", 0.45, 8);
+VALUES ("Golf Jacket", "Clothing", 48.00, 8);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Pin", "Sports", 0.01, 48);
+VALUES ("Golf Tee", "Sports", 2.99, 48);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Kart", "Sports", 0.100, 4);
+VALUES ("Golf Kart", "Sports", 999.00, 4);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Bag", "Bags", 0.12, 6);
+VALUES ("Golf Bag", "Bags", 24.99, 6);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Golf Towel", "Towel", 0.06, 36);
+VALUES ("Golf Towel", "Towel", 5.99, 36);
 
 SELECT * FROM bamazon_DB.products;
