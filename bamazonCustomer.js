@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     host: "localhost",
 
     port: 8889,
-    user: "",
+    user: "root",
 
     password: "root",
     database: "bamazon_DB"
@@ -51,18 +51,31 @@ function promptCustomer(){
         type: "input",
         message: 'How many you would like to buy?',
         }
-    ])
+    ]).then(function(answer){
+            var item; 
+            //console.log(answer.quantity)
+            for(var i = 0; i< results.length; i++){
 
-
+               if(results[i].id == answer.item_id) {
+                   item = results[i];
+            
+                   processOrder(item.id, answer.quantity)
+            
+               }
+            }
+        })
 });
 }
 
     function processOrder(id, quantity) {
-     connection.query('SELECT stockQUANTITY FROM product WHERE ?', [id], function(err, rows, fields) {
+        console.log("processOrder")
+     connection.query('SELECT stock_quantity FROM products WHERE ?', [id], function(err, rows, fields) {
        if(err)throw err;
 
-       if(JSON.parse(row[0].StockQuantity) >= quantity) {
-           var adjQuantity = rows[0].StockQuantity - quantity;
+   
+       
+    if((rows[0].stock_quantity) >= quantity) {
+           var adjQuantity = rows[0].stock_quantity - quantity;
            getPrice(id, quantity);
            updateStock(adjQuantity, id);
        
@@ -70,25 +83,30 @@ function promptCustomer(){
            console.log('There is not enough stock to fullfill your order,please try again.');
            connection.end();
        }
+       
      })
     }
 
 
     function getPrice(id, quantity) {
-        connection.query('SELECT Price FROM product WHERE itemID = ?', [id], function(err, rows, fields) {
-            if(err)throw err;
-            var orderPrice = JSON.parse(rows[0].Price) * quantity;
-            console.log('The total order cost is .00' * orderPrice);
+        console.log("getPrice")
+        connection.query('SELECT price FROM products WHERE id = ?', [id], function(err, rows, fields) {
+            if(err) {throw err;}
+
+            var orderPrice = (rows[0].price) * quantity;
+            console.log('The total order cost is $' + orderPrice);
 
         });
     }
 
 
     function updateStock(adjQuantity, id) {
-        connection.query('UPDATE product SET stockQuantity = ? WHERE ItemID =?', [adjQuantity, id],function(errr, rows, fields) {
-            if(err)throw err;
+        console.log("updateStock")
+        connection.query('UPDATE products SET stock_quantity = ? WHERE id =?', [adjQuantity, id],function(err, rows, fields) {
+            if(err){throw err;}
             console.log('Inventory has been update');
         });
+        connection.end()
     }
 
 
